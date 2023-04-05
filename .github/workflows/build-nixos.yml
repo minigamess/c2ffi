@@ -18,8 +18,8 @@ jobs:
           nix_path: nixpkgs=channel:nixpkgs-unstable
       - name: Build using Nix
         run: |
-          nix-build --pure && ./result/bin/c2ffi --help && echo OK
+          nix-build --pure && ./result/bin/c2ffi --help && echo OK && cp ./result/bin/c2ffi /usr/local/bin/
       - uses: actions/upload-artifact@v3
         with:
           name: c2ffi
-          path: result
+          path: /usr/local/bin/c2ffi
