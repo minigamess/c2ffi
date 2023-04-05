@@ -1,5 +1,12 @@
 FROM ubuntu:20.10
 ENV DEBIAN_FRONTEND=noninteractive
+
+# 备份原始的软件源列表文件
+RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak
+
+# 替换软件源为阿里云源
+RUN sed -i 's/http:\/\/archive\.ubuntu\.com\/ubuntu/https:\/\/mirrors.aliyun.com\/ubuntu/g' /etc/apt/sources.list
+
 RUN apt-get update && apt-get install -y llvm-11 clang-11 libclang-11-dev libclang-cpp11-dev python3-pip
 
 # Easiest way to get sufficiently new cmake appears to be using pip - Ubuntu 20.10 version is too old
