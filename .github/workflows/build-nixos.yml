@@ -19,3 +19,7 @@ jobs:
       - name: Build using Nix
         run: |
           nix-build --pure && ./result/bin/c2ffi --help && echo OK
+      - uses: actions/upload-artifact@v3
+        with:
+          name: c2ffi
+          path: bin
